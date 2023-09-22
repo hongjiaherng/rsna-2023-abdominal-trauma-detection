@@ -1,3 +1,10 @@
+# Dataset
+datasets/rsna-2023-abdominal-trauma-detection/train_images/
+datasets/rsna-2023-abdominal-trauma-detection/segmentations/
+datasets/rsna-2023-abdominal-trauma-detection/train.csv
+datasets/rsna-2023-abdominal-trauma-detection/train_dicom_tags.parquet
+datasets/rsna-2023-abdominal-trauma-detection/train_series_meta.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

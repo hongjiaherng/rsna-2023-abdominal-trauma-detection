@@ -1,0 +1,13 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+torch 
+torchvision
+lightning
+nibabel
+pydicom
+monai
+indexed_gzip
+huggingface_hub
+datasets
