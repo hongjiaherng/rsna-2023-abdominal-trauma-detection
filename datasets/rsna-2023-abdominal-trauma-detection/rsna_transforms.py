@@ -473,7 +473,12 @@ def volume_transforms(
                 monai.transforms.NormalizeIntensityd(keys=["img"], nonzero=False),
                 monai.transforms.ScaleIntensityd(keys=["img"], minv=-1.0, maxv=1.0),
                 monai.transforms.SpatialPadd(keys=["img"], spatial_size=volume_size),
-                monai.transforms.RandSpatialCropd(keys=["img"], roi_size=volume_size),
+                monai.transforms.RandSpatialCropd(
+                    keys=["img"],
+                    roi_size=volume_size,
+                    random_center=True,
+                    random_size=False,
+                ),
             ]
         )
 
@@ -607,14 +612,14 @@ def slice_transforms(
         return torchvision.transforms.Compose(
             [
                 torchvision.transforms.Resize(size=shorter_edge_length, antialias=True),
-                torchvision.transforms.TenCrop(size=slice_size),
+                torchvision.transforms.CenterCrop(size=slice_size),
             ]
         )
     elif crop_strategy == "random":
         return torchvision.transforms.Compose(
             [
                 torchvision.transforms.Resize(size=shorter_edge_length, antialias=True),
-                torchvision.transforms.TenCrop(size=slice_size),
+                torchvision.transforms.RandomCrop(size=slice_size),
             ]
         )
 
