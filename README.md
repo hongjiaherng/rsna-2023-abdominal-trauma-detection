@@ -1,11 +1,3 @@
-Python file
-
-```python
-import sys
-import os
-sys.path.append(os.path.abspath("../src"))
-```
-
 Jupyter notebook
 
 ```python
@@ -14,5 +6,5 @@ Jupyter notebook
 
 import sys
 import os
-sys.path.append(os.path.abspath("../src"))
+sys.path.append(os.path.abspath("../../datasets/rsna-2023-abdominal-trauma-detection/")) # append the path to the desired module folder
 ```

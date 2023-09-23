@@ -1,0 +1,14 @@
+{
+  "python.analysis.extraPaths": [
+    "./datasets/rsna-2023-abdominal-trauma-detection"
+  ],
+  "terminal.integrated.env.windows": {
+    "PYTHONPATH": "${workspaceFolder}/datasets/rsna-2023-abdominal-trauma-detection/"
+  },
+  "terminal.integrated.env.osx": {
+    "PYTHONPATH": "${workspaceFolder}/datasets/rsna-2023-abdominal-trauma-detection/"
+  },
+  "terminal.integrated.env.linux": {
+    "PYTHONPATH": "${workspaceFolder}/datasets/rsna-2023-abdominal-trauma-detection/"
+  }
+}

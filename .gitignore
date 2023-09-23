@@ -5,6 +5,9 @@ datasets/rsna-2023-abdominal-trauma-detection/train.csv
 datasets/rsna-2023-abdominal-trauma-detection/train_dicom_tags.parquet
 datasets/rsna-2023-abdominal-trauma-detection/train_series_meta.csv
 
+# Lightning logs
+lightning_logs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
