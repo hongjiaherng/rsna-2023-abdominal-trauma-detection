@@ -1,11 +1,27 @@
 import os
+import sys
 import lightning.pytorch as pl
 import torch.utils.data
 from lightning.pytorch.loggers import WandbLogger
 
-import rsna_datasets
-import rsna_transforms
 from models.segresnet import SegResNet3D
+
+
+def import_custom_modules_to_globals():
+    global rsna_datasets
+    global rsna_transforms
+
+    # Add datasets/rsna-2023-abdominal-trauma-detection to pythonpath
+    sys.path.append(
+        os.path.abspath(
+            os.path.join(
+                __file__, "../../../datasets/rsna-2023-abdominal-trauma-detection"
+            )
+        )
+    )
+
+    import rsna_datasets
+    import rsna_transforms
 
 
 def main(model_configs, train_configs, dataset_configs, preprocessing_configs):
@@ -110,6 +126,8 @@ def main(model_configs, train_configs, dataset_configs, preprocessing_configs):
 
 
 if __name__ == "__main__":
+    import_custom_modules_to_globals()
+
     # Model configs
     model_configs = {
         "bootstrap_from_pretrained": True,
