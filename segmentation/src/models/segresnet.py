@@ -10,8 +10,18 @@ import torchmetrics.classification
 
 
 class SegResNet3D(pl.LightningModule):
-    def __init__(self, pretrained=False, pretrained_path=None):
+    def __init__(
+        self,
+        pretrained=False,
+        pretrained_path=None,
+        volume_size=(96, 96, 96),
+        lr=0.0001,
+        weight_decay=1e-5,
+    ):
         super().__init__()
+
+        self.lr = lr
+        self.weight_decay = weight_decay
 
         self.criterion = monai.losses.DiceCELoss(
             to_onehot_y=True, softmax=True, include_background=True, reduction="mean"
@@ -23,7 +33,7 @@ class SegResNet3D(pl.LightningModule):
             num_classes=6, average="macro"
         )  # Expect: y_pred is (B, C, H, W, D) class probabilities, y is (B, H, W, D) class indices
         self.sw_inferer = monai.inferers.SlidingWindowInferer(
-            roi_size=(96, 96, 96), sw_batch_size=2, overlap=0.25
+            roi_size=volume_size, sw_batch_size=1, overlap=0.25
         )
         self.model = monai.networks.nets.SegResNet(
             spatial_dims=3,
@@ -110,4 +120,6 @@ class SegResNet3D(pl.LightningModule):
         self.log_dict(metrics_step, on_step=False, on_epoch=True, prog_bar=True)
 
     def configure_optimizers(self):
-        return torch.optim.AdamW(self.parameters(), lr=0.0001, weight_decay=1e-5)
+        return torch.optim.AdamW(
+            self.parameters(), lr=self.lr, weight_decay=self.weight_decay
+        )

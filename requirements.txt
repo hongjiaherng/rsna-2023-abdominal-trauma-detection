@@ -11,3 +11,4 @@ monai
 indexed_gzip
 huggingface_hub
 datasets
+wandb
