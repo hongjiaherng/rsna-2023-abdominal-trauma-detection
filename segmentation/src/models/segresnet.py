@@ -33,7 +33,7 @@ class SegResNet3D(pl.LightningModule):
             num_classes=6, average="macro"
         )  # Expect: y_pred is (B, C, H, W, D) class probabilities, y is (B, H, W, D) class indices
         self.sw_inferer = monai.inferers.SlidingWindowInferer(
-            roi_size=volume_size, sw_batch_size=1, overlap=0.25
+            roi_size=volume_size, sw_batch_size=4, overlap=0.25
         )
         self.model = monai.networks.nets.SegResNet(
             spatial_dims=3,

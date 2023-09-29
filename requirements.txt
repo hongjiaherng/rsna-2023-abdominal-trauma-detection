@@ -5,7 +5,7 @@ matplotlib
 torch 
 torchvision
 lightning
-nibabel
+nibabel>=5.1.0
 pydicom
 monai
 indexed_gzip
